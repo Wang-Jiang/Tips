@@ -55,20 +55,22 @@ Tips.makeText(getApplicationContext(), getIcon(R.drawable.ic_coffee_cup), Color.
 	<img src="SCREENSHOT/screenshot-06.png" width="480">
 </div>
 
-应当注意到上面的`makeText`存在一个Y轴偏移量，这个实际上就是给`WindowManager.LayoutParams`的`y`变量赋值，当`gravity`是`TOP`的时候，表示向屏幕下方偏移，当为`BOTTOM`的时候，则是向上，如果是`CENTER`，则负数表示向上，正数表示向下偏移
+应当注意到上面的`makeText`存在一个Y轴偏移量，这个实际上就是给`WindowManager.LayoutParams`的`y`变量赋值
+
+当`gravity`是`TOP`的时候，表示向屏幕下方偏移，当为`BOTTOM`的时候，则是向上，如果是`CENTER`，则负数表示向上，正数表示向下偏移
 
 其他效果如下
 
 <div align="center">
 	<img src="SCREENSHOT/screenshot-02.png" width="480"><br>
 	<img src="SCREENSHOT/screenshot-03.png" width="480"><br>
-	<img src="SCREENSHOT/screenshot-04.png" width="480"><br>
-	<img src="SCREENSHOT/screenshot-05.png" width="480"><br>
+	<img src="SCREENSHOT/screenshot-04.png" width="480" style="padding-top:60px;"><br>
+	<img src="SCREENSHOT/screenshot-05.png" width="480" style="padding-top:60px;"><br>
 </div>
 
 ## 存在的问题
 
-在Android7.0上，如果当前的屏幕存在一个Toast，执行Tip的show()的时候会抛出异常，这个是由于`mWM.addView(mView, mParams)`导致的，会看到类似于下面的报错信息
+在Android7.0上，如果当前的屏幕存在一个Toast，执行Tip的`show()`的时候会抛出异常，这个是由于`mWM.addView(mView, mParams)`导致的，会看到类似于下面的报错信息
 
     android.view.WindowManager$BadTokenException: Unable to add window -- window android.view.ViewRootImpl$W@ff673eb has already been added
         at android.view.ViewRootImpl.setView(ViewRootImpl.java:691)
@@ -78,7 +80,9 @@ Tips.makeText(getApplicationContext(), getIcon(R.drawable.ic_coffee_cup), Color.
         at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:776)
 
 在其他的系统上面并没有出现这个问题，实际上你可以尝试将`WindowManager.LayoutParams`的`type`设置为`WindowManager.LayoutParams.TYPE_PHONE`，但是这个需要权限`android.permission.SYSTEM_ALERT_WINDOW`
+
 这个权限在Android高版本限制很大，甚至默认是关闭的，需要用户手动打开，而一些第三方的ROM同样对此权限限制很大，主要是因为这个权限经常被用来一些应用用来做悬浮广告，对用户体验影响很大
+
 为了防止出错，Tips在调用`addView()`增加了`try`，但是这个并没有完全解决问题，当屏幕上存在一个Tips的时候，去调用Toast的`show()`还是会导致应用崩溃
 
 ## 注意事项
