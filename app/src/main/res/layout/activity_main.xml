@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp">
+
+    <Button
+        android:id="@+id/system_default_toast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="system_default_toast" />
+
+    <Button
+        android:id="@+id/success_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="success_tips" />
+
+    <Button
+        android:id="@+id/warning_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="warning_tips" />
+
+    <Button
+        android:id="@+id/error_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="error_tips" />
+
+    <Button
+        android:id="@+id/normal_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="normal_tips" />
+
+    <Button
+        android:id="@+id/info_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="info_tips" />
+
+    <Button
+        android:id="@+id/custom_tips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="custom_tips" />
+
+</LinearLayout>
